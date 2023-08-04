@@ -1,36 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Headers Display</title>
+    <title>Web View with JavaScript Interface</title>
 </head>
 <body>
-    <h1>Received Headers:</h1>
-    <p id="accessTokenHeader"></p>
-    <p id="customHeader"></p>
+    <h1>Web View with JavaScript Interface</h1>
+
+    <button onclick="invokeSwiftFunction()">Invoke Swift Function</button>
 
     <script>
-        // Function to extract and display the headers
-        function displayHeaders() {
-            const headers = getHeadersFromQueryString();
-            document.getElementById('accessTokenHeader').innerText = 'Access Token: ' + headers.access_token;
-            document.getElementById('customHeader').innerText = 'Custom Header: ' + headers.Authorization;
+        // Function to invoke the Swift interface function
+        function invokeSwiftFunction() {
+            // This is the message sent to the Swift code
+            const message = "Hello from Web Page!";
+            window.webkit.messageHandlers.interfaceFromWebView.postMessage(message);
         }
-
-        // Function to extract headers from the URL's query string
-        function getHeadersFromQueryString() {
-            const query = window.location.search.substring(1);
-            const params = new URLSearchParams(query);
-            const headers = {};
-
-            params.forEach((value, key) => {
-                headers[key] = value;
-            });
-
-            return headers;
-        }
-
-        // Call the displayHeaders function when the page loads
-        window.onload = displayHeaders;
     </script>
 </body>
 </html>

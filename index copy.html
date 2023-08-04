@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Headers Display</title>
+</head>
+<body>
+    <h1>Received Headers:</h1>
+    <p id="accessTokenHeader"></p>
+    <p id="customHeader"></p>
+
+    <script>
+        // Function to extract and display the headers
+        function displayHeaders() {
+            const headers = getHeadersFromQueryString();
+            document.getElementById('accessTokenHeader').innerText = 'Access Token: ' + headers.access_token;
+            document.getElementById('customHeader').innerText = 'Custom Header: ' + headers.Authorization;
+        }
+
+        // Function to extract headers from the URL's query string
+        function getHeadersFromQueryString() {
+            const query = window.location.search.substring(1);
+            const params = new URLSearchParams(query);
+            const headers = {};
+
+            params.forEach((value, key) => {
+                headers[key] = value;
+            });
+
+            return headers;
+        }
+
+        // Call the displayHeaders function when the page loads
+        window.onload = displayHeaders;
+    </script>
+</body>
+</html>
