@@ -33,9 +33,12 @@
 <pre id="apiResponse"></pre>
 
 <button onclick="makeApiCall()">API Response</button>
-<a href="com.careem.pay://careemcallback?action=doSomething">Click here to continue in the app</a>
+<a id="deeplink" href="com.careem.pay://careemcallback?action=doSomething">Click here to continue in the app</a>
 
 <script>
+    setTimeout(() => {
+      document.getElementById('deeplink').click();
+    }, 1000);
     function updateInfo(refreshToken, clientId, invoiceId, environment) {
         document.getElementById('refreshTokenDisplay').innerText = "Refresh Token: " + refreshToken;
         document.getElementById('clientIdDisplay').innerText = "Client Id: " + clientId;
